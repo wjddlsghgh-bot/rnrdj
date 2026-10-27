@@ -1,0 +1,26 @@
+name: Daily D-Day Calculator
+
+on:
+  schedule:
+    # 매일 UTC 00:00 (한국 시간 오전 09:00) 실행
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 깃허브에서 수동으로 버튼을 눌러 바로 실행 가능
+
+jobs:
+  run-dday:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run D-Day Script
+        env:
+          TARGET_DATE: '2026-12-25' # 원하는 D-Day 목표 날짜 입력 (YYYY-MM-DD)
+          EVENT_TITLE: '크리스마스'   # 이벤트 제목 입력
+        run: |
+          python dday.py
