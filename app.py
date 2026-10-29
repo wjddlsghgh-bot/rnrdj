@@ -6,14 +6,14 @@ st.set_page_config(page_title="다중 D-Day 카운트다운", page_icon="📅", 
 st.title("📅 스마트 멀티 D-Day 카운트다운")
 st.caption("중요한 일정들을 한눈에 모아보고 자유롭게 관리하세요.")
 
-# 세션 상태 초기화 (기본 목록)
+# 1. 세션 상태 초기화 (기본 목록)
 if "dday_list" not in st.session_state:
     st.session_state.dday_list = [
         {"name": "2026 크리스마스", "date": date(2026, 12, 25)},
         {"name": "내년 새해", "date": date(2027, 1, 1)},
     ]
 
-# 사이드바: 새 D-Day 추가
+# 2. 사이드바: 새 D-Day 추가
 with st.sidebar:
     st.header("➕ 새 D-Day 추가")
     new_name = st.text_input("이벤트 이름", placeholder="예: 생일, 시험일")
@@ -29,7 +29,7 @@ with st.sidebar:
 
 st.divider()
 
-# D-Day 목록 출력
+# 3. D-Day 목록 출력
 if not st.session_state.dday_list:
     st.info("등록된 D-Day가 없습니다. 사이드바에서 새로 추가해보세요!")
 else:
